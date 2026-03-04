@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Проблема 1. Пластиковое загрязнение</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&family=Russo+One&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-deep: #020617;
+            --accent-cyan: #22d3ee;
+        }
+        
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-deep);
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .ocean-bg {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, #083344 0%, #020617 100%);
+            z-index: -1;
+        }
+
+        /* Обновленный контейнер для максимальной ширины */
+        .video-hero {
+            position: relative;
+            width: 100%;
+            max-width: 1400px; /* Увеличили ширину */
+            margin: 0 auto;
+            /* Убрали фиксированную высоту 700px */
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(34, 211, 238, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Соотношение сторон 16:9 */
+        .aspect-video {
+            aspect-ratio: 16 / 9;
+        }
+
+        .floating-icon {
+            position: absolute;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+<link href="slides-responsive.css" rel="stylesheet"/>
+</head>
+<body class="slide-page p-4 md:p-8">
+    <div class="ocean-bg"></div>
+    
+    <div class="max-w-7xl mx-auto">
+        
+        <header class="text-center mb-8">
+            <div class="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-cyan-500 bg-opacity-10 border border-cyan-500 border-opacity-20 mb-4">
+                <i class="fas fa-circle-exclamation text-cyan-400 text-sm"></i>
+                <span class="text-cyan-400 text-xs font-bold uppercase tracking-widest">Проблема №1 — Пластиковое загрязнение</span>
+            </div>
+        </header>
+
+        <section class="flex flex-col items-center">
+            <div class="video-hero aspect-video">
+                <video controls preload="metadata" playsinline src="./презентация.mp4"></video>
+            </div>
+            
+            <div class="text-center mt-6">
+                <p class="text-cyan-400 text-opacity-60 text-base italic flex items-center justify-center gap-2">
+                    <i class="fab fa-youtube text-red-500"></i> 
+                    Видео: «Пластик в мировом океане: кризис углубляется»
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <i class="fas fa-bottle-water floating-icon text-9xl top-20 left-10 rotate-12"></i>
+    <i class="fas fa-bag-shopping floating-icon text-9xl bottom-20 right-10 -rotate-12"></i>
+</body>
+</html>

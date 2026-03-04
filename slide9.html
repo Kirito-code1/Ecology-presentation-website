@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Проблема 4. Наркомания</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&family=Russo+One&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Open Sans', sans-serif; background-color: #083344; }
+        
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .bg-ocean {
+            position: absolute;
+            inset: 0;
+            background-color: #0f172a; 
+            z-index: 0;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .blob-1 { top: -100px; right: -100px; width: 600px; height: 600px; background-color: #0ea5e9; } 
+        .blob-2 { bottom: -150px; left: -150px; width: 500px; height: 500px; background-color: #6366f1; } 
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            padding: 3rem 4rem;
+            gap: 4rem;
+        }
+
+        .title-font { font-family: 'Montserrat', sans-serif; }
+        .accent-font { font-family: 'Russo One', sans-serif; }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .info-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #bae6fd; 
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        /* Увеличенный контейнер для фото */
+        .image-frame {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 20px rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(14, 165, 233, 0.4);
+            position: relative;
+            z-index: 20;
+            transform: scale(1.05); /* Легкое увеличение */
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .help-badge {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            color: rgba(255,255,255,0.03);
+            z-index: 2;
+        }
+
+    </style>
+<link href="slides-responsive.css" rel="stylesheet"/>
+</head>
+<body class="slide-page">
+<div class="slide-container">
+<div class="bg-ocean"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<i class="fas fa-capsules floating-icon text-8xl" style="top: 15%; left: 45%; transform: rotate(25deg);"></i>
+<i class="fas fa-users-slash floating-icon text-9xl" style="bottom: 5%; right: 5%; transform: rotate(-10deg);"></i>
+<div class="content-layer">
+<div class="flex flex-col w-1/2 justify-between h-full">
+<div>
+<div class="flex items-center gap-3 mb-5">
+<div class="bg-indigo-500 bg-opacity-20 p-2 rounded-lg">
+<i class="fas fa-user-shield text-indigo-300"></i>
+</div>
+<p class="text-indigo-300 font-bold uppercase tracking-widest text-sm">Проблема №4</p>
+</div>
+<h1 class="text-white text-4xl font-black title-font leading-tight mb-4">
+                    Наркомания:<br/>
+<span class="text-sky-400">Социальный вызов</span>
+</h1>
+<p class="text-gray-300 text-base mb-6 leading-relaxed">
+                    Это не только личная трагедия, но и серьезный удар по генофонду страны и безопасности всего общества.
+                </p>
+<div class="flex flex-col gap-3">
+<div class="info-card">
+<div class="bg-red-500 bg-opacity-20 p-2.5 rounded-lg flex-shrink-0">
+<i class="fas fa-heart-crack text-red-300 text-lg"></i>
+</div>
+<div>
+<h3 class="info-title">Удар по молодежи</h3>
+<p class="text-gray-300 text-sm leading-snug">Разрушение физического и психического здоровья, потеря будущего.</p>
+</div>
+</div>
+<div class="info-card">
+<div class="bg-green-600 bg-opacity-20 p-2.5 rounded-lg flex-shrink-0">
+<i class="fas fa-flask text-green-300 text-lg"></i>
+</div>
+<div>
+<h3 class="info-title">Экологический след</h3>
+<p class="text-gray-300 text-sm leading-snug">Токсичные отходы подпольных лабораторий и опасный мусор на улицах.</p>
+</div>
+</div>
+<div class="info-card">
+<div class="bg-yellow-600 bg-opacity-20 p-2.5 rounded-lg flex-shrink-0">
+<i class="fas fa-exclamation-triangle text-yellow-300 text-lg"></i>
+</div>
+<div>
+<h3 class="info-title">Факторы риска</h3>
+<p class="text-gray-300 text-sm leading-snug">Давление среды, стресс и отсутствие своевременной психологической поддержки.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white border-opacity-10">
+</div>
+</div>
+
+<div class="flex flex-col w-1/2 justify-center h-full relative">
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-indigo-500 bg-opacity-10 rounded-full blur-3xl z-0"></div>
+<div class="image-frame aspect-w-16 aspect-h-9 w-full bg-gray-900 shadow-2xl z-10">
+<img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&q=80&w=1000" alt="Prevention Concept">
+</div>
+<div class="mt-8 flex justify-center">
+<p class="text-sky-200 text-opacity-60 text-sm italic flex items-center gap-2">
+<i class="fas fa-image"></i>
+                    Визуализация: Жизнь без зависимостей — путь к здоровью
+                </p>
+</div>
+<div class="mt-6 bg-white bg-opacity-5 p-5 rounded-lg border-l-4 border-indigo-500 backdrop-blur-sm">
+<p class="text-white text-base font-light italic text-center leading-relaxed">
+                    «Твоя жизнь — это твой главный проект. <br/>Не дай зависимости разрушить его.»
+                </p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

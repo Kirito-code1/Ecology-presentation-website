@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Проблема 2. Вырубка лесов</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&family=Russo+One&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-forest: #052e16;
+            --accent-green: #4ade80;
+        }
+        
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-forest);
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Фон с эффектом туманного леса */
+        .forest-bg {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 20%, #064e3b 0%, #052e16 100%);
+            z-index: -1;
+        }
+
+        /* Контейнер для широкого видео */
+        .video-hero-container {
+            position: relative;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            z-index: 10;
+        }
+
+        .video-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110%;
+            height: 110%;
+            background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
+            filter: blur(50px);
+            z-index: -1;
+        }
+
+        .video-hero {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(74, 222, 128, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--accent-green);
+            transform: scale(1.02);
+        }
+
+        .stat-number {
+            font-family: 'Russo One', sans-serif;
+            background: linear-gradient(to bottom, #fff 20%, #4ade80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title-main {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 0.9;
+        }
+
+        .floating-icon {
+            position: absolute;
+            opacity: 0.03;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        .animate-pulse-slow { animation: pulse-slow 4s infinite; }
+    </style>
+<link href="slides-responsive.css" rel="stylesheet"/>
+</head>
+<body class="slide-page p-4 md:p-8">
+    <div class="forest-bg"></div>
+    
+    <div class="max-w-7xl mx-auto">
+        
+        <header class="text-center mb-10">
+            <div class="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-green-500 bg-opacity-10 border border-green-500 border-opacity-30 mb-6 animate-pulse-slow">
+                <i class="fas fa-leaf text-green-400"></i>
+                <span class="text-green-400 text-xs font-bold uppercase tracking-[0.3em]">
+Проблема №2 - Вырубка лесов</span>
+            </div>
+        </header>
+
+        <section>
+            <div class="video-hero-container">
+                <div class="video-glow"></div>
+                <div class="video-hero aspect-video">
+                    <iframe
+                        src="https://www.youtube.com/embed/Fon3cmiCvq4"
+                        class="w-full h-full"
+                        frameborder="0"
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div class="flex justify-between items-center mt-6 px-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 h-[1px] bg-green-500 bg-opacity-50"></span>
+                        <p class="text-green-400 text-opacity-70 text-sm font-semibold tracking-widest uppercase">
+                            Global Deforestation Report
+                        </p>
+                    </div>
+                    <p class="text-gray-500 text-xs italic">Видео: «Леса Амазонки вырубают с пугающей скоростью»</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <i class="fas fa-tree floating-icon text-[20rem] -top-20 -right-20 rotate-12"></i>
+    <i class="fas fa-seedling floating-icon text-[15rem] -bottom-20 -left-10 opacity-5"></i>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Наше решение: Сайт экособытий</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&family=Russo+One&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden; 
+            font-family: 'Open Sans', sans-serif; 
+            background-color: #0f172a; 
+        }
+        
+        .slide-container { 
+            width: 100vw; 
+            height: 100vh; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            padding: 3rem 4rem;
+        }
+
+        .bg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-color: #0f172a;
+        }
+        
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .blob-1 { top: -100px; left: -100px; width: 600px; height: 600px; background-color: #06b6d4; }
+        .blob-2 { bottom: -150px; right: -150px; width: 600px; height: 600px; background-color: #10b981; }
+        
+        .grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            gap: 3rem;
+        }
+
+        .title-font { font-family: 'Montserrat', sans-serif; }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(34, 211, 238, 0.3);
+            transform: translateX(5px);
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* --- BROWSER MOCKUP STYLES --- */
+        .browser-mockup {
+            background: #0f172a; /* Темный фон браузера */
+            border-radius: 16px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+
+        .browser-header {
+            background: #1e293b;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 30;
+        }
+
+        .browser-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+        .browser-body {
+            flex: 1;
+            position: relative;
+            background: #0f172a;
+            overflow-y: auto;
+            /* Скрываем скроллбар для красоты */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .browser-body::-webkit-scrollbar { display: none; }
+
+        /* ИНТЕРФЕЙС САЙТА ВНУТРИ */
+        .site-hero-map {
+            width: 100%;
+            height: 280px;
+            /* Красивая темная карта города */
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 1)), url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 1rem;
+        }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .site-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+        }
+
+        .user-stats-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: fit-content;
+            margin-top: 2rem;
+        }
+
+        .site-content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            margin-top: -40px; /* Залезаем на карту */
+            position: relative;
+            z-index: 20;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .event-card {
+            background: #1e293b;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .event-card:hover { transform: translateY(-3px); border-color: rgba(16, 185, 129, 0.5); }
+
+        .map-marker {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pulse-ring {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(16, 185, 129, 0.4);
+            border-radius: 50%;
+            animation: radarPulse 2s infinite ease-out;
+        }
+
+        @keyframes radarPulse {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .qr-container {
+            background: white;
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glow-text { text-shadow: 0 0 20px rgba(34, 211, 238, 0.4); }
+
+    </style>
+<link href="slides-responsive.css" rel="stylesheet"/>
+</head>
+<body class="slide-page">
+<div class="slide-container">
+    <div class="bg-layer"></div>
+    <div class="grid-pattern"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    
+    <div class="content-wrapper">
+        <div class="w-5/12 flex flex-col justify-between h-full z-20">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-1 bg-cyan-400 rounded-full"></div>
+                    <p class="text-cyan-400 font-bold uppercase tracking-widest text-sm">Инновация</p>
+                </div>
+                <h1 class="text-white text-4xl font-extrabold title-font mb-2 leading-tight">
+                    Наше решение:<br/>
+                    <span class=" bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 glow-text">Эко-портал города</span>
+                </h1>
+                <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                    Единая цифровая платформа, объединяющая организаторов, волонтёров и школы для реальных действий.
+                </p>
+
+                <div class="flex flex-col gap-3">
+                    <div class="feature-item">
+                        <div class="feature-icon bg-cyan-500 bg-opacity-20 text-cyan-400"><i class="fas fa-map-location-dot"></i></div>
+                        <div>
+                            <p class="text-white font-bold text-sm title-font">Интерактивная карта</p>
+                            <p class="text-gray-400 text-xs">Все эко-события города в одном месте</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon bg-emerald-500 bg-opacity-20 text-emerald-400"><i class="fas fa-id-card-clip"></i></div>
+                        <div>
+                            <p class="text-white font-bold text-sm title-font">Цифровой профиль</p>
+                            <p class="text-gray-400 text-xs">Учёт волонтёрских часов и рейтинг</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon bg-purple-500 bg-opacity-20 text-purple-400"><i class="fas fa-comments"></i></div>
+                        <div>
+                            <p class="text-white font-bold text-sm title-font">Командный центр</p>
+                            <p class="text-gray-400 text-xs">Чат участников и регистрация</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 mt-4 bg-white bg-opacity-5 p-4 rounded-xl border border-white border-opacity-10">
+                <div class="qr-container flex-shrink-0">
+                    <img alt="QR Code" class="w-full h-full" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://eco-city.app"/>
+                </div>
+                <div>
+                    <p class="text-cyan-300 font-bold uppercase text-xs tracking-wider mb-1">Присоединяйся</p>
+                    <p class="text-white text-sm font-semibold mb-2">Запустим перемены вместе!</p>
+                    <div class="flex items-center gap-2 text-gray-400 text-xs">
+                        <i class="fas fa-arrow-left animate-pulse text-cyan-400"></i>
+                        <span>Сканируй для входа</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-7/12 h-full flex items-center justify-center relative">
+            <div class="absolute -inset-4 bg-emerald-500 opacity-20 blur-3xl rounded-full"></div>
+            
+            <div class="browser-mockup w-full transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                <div class="browser-header">
+                    <div class="browser-dot bg-red-500"></div>
+                    <div class="browser-dot bg-yellow-500"></div>
+                    <div class="browser-dot bg-green-500"></div>
+                    <div class="flex-1 bg-black bg-opacity-40 h-7 rounded-md px-3 flex items-center ml-4 border border-white border-opacity-5">
+                        <i class="fas fa-lock text-gray-500 text-[10px] mr-2"></i>
+                        <p class="text-gray-400 text-[11px] font-mono">eco-city.app/dashboard</p>
+                    </div>
+                </div>
+                
+                <div class="browser-body">
+                    
+                    <div class="site-hero-map">
+                        <div class="glass-nav">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-leaf text-emerald-400 text-lg"></i>
+                                <p class="text-white font-bold text-sm tracking-wide title-font">ECO<span class="text-emerald-400">CITY</span></p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <i class="fas fa-bell text-gray-300 text-sm"></i>
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-400 to-emerald-400 flex items-center justify-center border-2 border-white">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="avatar" class="w-full h-full rounded-full">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="user-stats-card">
+                            <div>
+                                <p class="text-gray-300 text-[10px] uppercase tracking-wider mb-1">Твой профиль</p>
+                                <p class="text-white font-bold text-sm">Уровень 5: Эко-герой</p>
+                                <div class="w-32 h-1.5 bg-gray-700 rounded-full mt-2 overflow-hidden">
+                                    <div class="w-3/4 h-full bg-emerald-400 rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="text-center ml-2 pl-3 border-l border-white border-opacity-20">
+                                <i class="fas fa-coins text-yellow-400 text-sm mb-1"></i>
+                                <p class="text-white font-bold text-xs">450</p>
+                            </div>
+                        </div>
+
+                        <div class="map-marker" style="top: 40%; left: 30%">
+                            <div class="pulse-ring"></div>
+                            <i class="fas fa-map-marker-alt text-emerald-400 text-2xl drop-shadow-lg"></i>
+                        </div>
+                        <div class="map-marker" style="top: 60%; left: 70%">
+                            <div class="pulse-ring" style="animation-delay: 1s; background: rgba(34, 211, 238, 0.4);"></div>
+                            <i class="fas fa-map-marker-alt text-cyan-400 text-2xl drop-shadow-lg"></i>
+                        </div>
+                    </div>
+
+                    <div class="site-content">
+                        <div class="flex justify-between items-end mb-4">
+                            <h2 class="text-white font-bold text-lg title-font">Актуальные события</h2>
+                            <p class="text-cyan-400 text-[10px] cursor-pointer hover:underline">Смотреть все <i class="fas fa-chevron-right ml-1"></i></p>
+                        </div>
+
+                        <div class="events-grid">
+                            <div class="event-card">
+                                <div class="relative h-24">
+                                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                                    <div class="absolute top-2 left-2 site-badge bg-red-500 shadow-red-500/50">
+                                        <i class="fas fa-fire mr-1"></i> Hot
+                                    </div>
+                                    <div class="absolute bottom-2 right-2 bg-black bg-opacity-60 backdrop-blur text-white text-[9px] px-2 py-1 rounded">
+                                        <i class="fas fa-users text-emerald-400 mr-1"></i> 24/50
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <p class="text-white text-xs font-bold mb-1">Очистка набережной реки</p>
+                                    <p class="text-gray-400 text-[9px] mb-3"><i class="fas fa-calendar-alt mr-1"></i> Завтра, 10:00 • Центральный парк</p>
+                                    <button class="w-full bg-emerald-500 hover:bg-emerald-600 text-white text-[10px] font-bold py-2 rounded-lg transition-colors">
+                                        Присоединиться (+50 <i class="fas fa-coins text-yellow-300 ml-1"></i>)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="event-card">
+                                <div class="relative h-24">
+                                    <img src="https://6sch.ru/upload/resize_cache/iblock/33e/780_600_2/33eb4303792c14b99720e61329c3f758.jpg" class="w-full h-full object-cover">
+                                    <div class="absolute top-2 left-2 site-badge">
+                                        Сортировка
+                                    </div>
+                                    <div class="absolute bottom-2 right-2 bg-black bg-opacity-60 backdrop-blur text-white text-[9px] px-2 py-1 rounded">
+                                        <i class="fas fa-users text-emerald-400 mr-1"></i> 8/20
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <p class="text-white text-xs font-bold mb-1">Школьный сбор макулатуры</p>
+                                    <p class="text-gray-400 text-[9px] mb-3"><i class="fas fa-calendar-alt mr-1"></i> Суббота, 12:00 • Школа №15</p>
+                                    <button class="w-full bg-slate-700 hover:bg-slate-600 text-white text-[10px] font-bold py-2 rounded-lg transition-colors border border-slate-600">
+                                        Детали акции
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

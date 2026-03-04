@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эко-Актив: Презентация</title>
+    <style>
+        :root {
+            --controls-gap: clamp(8px, 1.3vw, 16px);
+            --btn-font: clamp(13px, 1.05vw, 18px);
+            --btn-pad-y: clamp(8px, 0.9vw, 14px);
+            --btn-pad-x: clamp(12px, 1.2vw, 18px);
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0f172a;
+            font-family: "Open Sans", Arial, sans-serif;
+            color: #fff;
+        }
+
+        #presentation {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            isolation: isolate;
+        }
+
+        iframe {
+            position: absolute;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: none;
+            background: #0f172a;
+        }
+
+        iframe.active {
+            display: block;
+        }
+
+        .controls {
+            position: fixed;
+            right: clamp(10px, 1.5vw, 26px);
+            bottom: clamp(12px, 1.8vh, 24px);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--controls-gap);
+            z-index: 1000;
+            opacity: 0.2;
+            transition: opacity 0.25s ease;
+        }
+
+        .controls:hover,
+        .controls:focus-within {
+            opacity: 1;
+        }
+
+        .btn {
+            background: rgba(15, 23, 42, 0.55);
+            color: #fff;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            padding: var(--btn-pad-y) var(--btn-pad-x);
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: var(--btn-font);
+            line-height: 1;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .btn:hover {
+            background: rgba(30, 41, 59, 0.86);
+            border-color: rgba(34, 211, 238, 0.55);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .counter {
+            position: fixed;
+            bottom: clamp(14px, 2vh, 28px);
+            left: clamp(10px, 1.5vw, 26px);
+            color: rgba(255, 255, 255, 0.78);
+            font-size: clamp(13px, 1.1vw, 18px);
+            z-index: 1000;
+            pointer-events: none;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            border-radius: 10px;
+            padding: 6px 11px;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        @media (max-width: 800px) {
+            .controls {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                justify-content: center;
+                opacity: 0.95;
+            }
+
+            .counter {
+                top: 10px;
+                bottom: auto;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="presentation"></div>
+
+    <div class="counter"><span id="current">1</span> / <span id="total">12</span></div>
+
+    <div class="controls" aria-label="Управление презентацией">
+        <button class="btn" type="button" onclick="prevSlide()" aria-label="Предыдущий слайд">⬅ Назад</button>
+        <button class="btn" type="button" onclick="nextSlide()" aria-label="Следующий слайд">Вперёд ➡</button>
+        <button class="btn" type="button" onclick="toggleFullscreen()" aria-label="Полноэкранный режим">⛶ Fullscreen</button>
+    </div>
+
+    <script>
+        const totalSlides = 12;
+        const storageKey = 'eco_slide_pos';
+        const container = document.getElementById('presentation');
+        const currentEl = document.getElementById('current');
+        const totalEl = document.getElementById('total');
+        const idleTask = window.requestIdleCallback || ((cb) => setTimeout(cb, 250));
+        const slideFrames = new Map();
+
+        let currentSlide = parseInt(localStorage.getItem(storageKey), 10) || 1;
+        currentSlide = Math.min(totalSlides, Math.max(1, currentSlide));
+
+        totalEl.textContent = totalSlides;
+
+        for (let i = 1; i <= totalSlides; i++) {
+            const frame = document.createElement('iframe');
+            frame.id = `slide-${i}`;
+            frame.title = `Слайд ${i}`;
+            frame.dataset.src = `slide${i}.html`;
+            frame.loading = 'lazy';
+            frame.referrerPolicy = 'no-referrer';
+            if (i === currentSlide) {
+                frame.classList.add('active');
+            }
+            slideFrames.set(i, frame);
+            container.appendChild(frame);
+        }
+
+        function ensureSlideLoaded(slideNumber) {
+            const frame = slideFrames.get(slideNumber);
+            if (!frame || frame.dataset.loaded === '1') return;
+
+            frame.src = frame.dataset.src;
+            frame.dataset.loaded = '1';
+        }
+
+        function preloadNearby(slideNumber) {
+            [slideNumber, slideNumber + 1, slideNumber - 1].forEach((n) => {
+                if (n >= 1 && n <= totalSlides) {
+                    ensureSlideLoaded(n);
+                }
+            });
+
+            const next = slideNumber + 2;
+            if (next <= totalSlides) {
+                idleTask(() => ensureSlideLoaded(next));
+            }
+        }
+
+        function updateSlide() {
+            slideFrames.forEach((frame) => frame.classList.remove('active'));
+
+            const activeFrame = slideFrames.get(currentSlide);
+            if (activeFrame) {
+                ensureSlideLoaded(currentSlide);
+                activeFrame.classList.add('active');
+            }
+
+            preloadNearby(currentSlide);
+            currentEl.textContent = currentSlide;
+            localStorage.setItem(storageKey, String(currentSlide));
+        }
+
+        function nextSlide() {
+            if (currentSlide >= totalSlides) return;
+            currentSlide += 1;
+            updateSlide();
+        }
+
+        function prevSlide() {
+            if (currentSlide <= 1) return;
+            currentSlide -= 1;
+            updateSlide();
+        }
+
+        async function toggleFullscreen() {
+            try {
+                if (!document.fullscreenElement) {
+                    await document.documentElement.requestFullscreen();
+                } else {
+                    await document.exitFullscreen();
+                }
+            } catch (_) {
+                // Игнорируем ошибки fullscreen API в неподдерживаемых окружениях.
+            }
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight' || event.key === ' ' || event.key === 'Enter') {
+                event.preventDefault();
+                nextSlide();
+            }
+
+            if (event.key === 'ArrowLeft' || event.key === 'Backspace') {
+                event.preventDefault();
+                prevSlide();
+            }
+        });
+
+        let wheelLocked = false;
+        document.addEventListener('wheel', (event) => {
+            if (wheelLocked || Math.abs(event.deltaY) < 26) return;
+            wheelLocked = true;
+
+            if (event.deltaY > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+
+            setTimeout(() => {
+                wheelLocked = false;
+            }, 320);
+        }, { passive: true });
+
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (event) => {
+            touchStartX = event.changedTouches[0].clientX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (event) => {
+            const touchEndX = event.changedTouches[0].clientX;
+            const distance = touchStartX - touchEndX;
+
+            if (Math.abs(distance) < 50) return;
+            if (distance > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }, { passive: true });
+
+        updateSlide();
+    </script>
+</body>
+</html>

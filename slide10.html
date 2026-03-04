@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Решения: Наркомания</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;family=Russo+One&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden; 
+            font-family: 'Open Sans', sans-serif; 
+            background-color: #0f172a; /* slate-900 */
+        }
+        
+        .slide-container { 
+            width: 100vw; 
+            height: 100vh; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column;
+        }
+
+        /* Background Elements */
+        .bg-layer {
+            position: absolute;
+            inset: 0;
+            background-color: #0f172a;
+            z-index: 0;
+        }
+        
+        .circle-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 1;
+            filter: blur(60px);
+        }
+
+        .shape-1 { top: -100px; left: -100px; width: 600px; height: 600px; background-color: #4f46e5; } /* indigo */
+        .shape-2 { bottom: -150px; right: -150px; width: 500px; height: 500px; background-color: #10b981; } /* emerald */
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            padding: 3rem 4rem;
+            gap: 3rem;
+        }
+
+        .title-font { font-family: 'Montserrat', sans-serif; }
+        .accent-font { font-family: 'Russo One', sans-serif; }
+
+        /* Left Column: Solutions Grid */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .solution-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .solution-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Right Column: Storyboard */
+        .storyboard-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+
+        .film-strip-holes {
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 4px, transparent 5px);
+            background-size: 10px 20px;
+            background-repeat: repeat-y;
+        }
+
+        .scene-card {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #6366f1;
+            position: relative;
+            margin-left: 1.5rem; /* Make space for film strip */
+        }
+
+        .scene-number {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: 'Russo One', sans-serif;
+            line-height: 0.5;
+        }
+
+        .scene-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .arrow-down {
+            align-self: center;
+            color: rgba(255,255,255,0.2);
+            margin-bottom: 0.5rem;
+            margin-left: 1.5rem;
+        }
+
+        /* Footer Info */
+        .help-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 1px dashed rgba(239, 68, 68, 0.3);
+        }
+
+    </style>
+<link href="slides-responsive.css" rel="stylesheet"/>
+</head>
+<body class="slide-page">
+<div class="slide-container">
+<!-- Background -->
+<div class="bg-layer"></div>
+<div class="circle-shape shape-1"></div>
+<div class="circle-shape shape-2"></div>
+<div class="content-wrapper">
+<!-- Left Column: Solutions -->
+<div class="w-1/2 flex flex-col h-full">
+<div class="mb-2">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-1 bg-indigo-500 rounded-full"></div>
+<p class="text-indigo-400 font-bold uppercase tracking-widest text-sm">Путь к свободе</p>
+</div>
+<h1 class="text-white text-4xl font-extrabold title-font leading-tight mb-2">
+                    Осознанность,<br/>спорт и поддержка
+                </h1>
+<p class="text-gray-400 text-sm">
+                    Эффективные методы противостояния зависимости через развитие личности и здоровое окружение.
+                </p>
+</div>
+<div class="solutions-grid flex-1">
+<!-- Card 1 -->
+<div class="solution-card">
+<div class="icon-box bg-purple-500 bg-opacity-20 text-purple-400">
+<i class="fas fa-brain"></i>
+</div>
+<h3 class="text-white font-bold title-font">Осознанность</h3>
+<p class="text-gray-400 text-xs leading-relaxed">Стресс-менеджмент, дыхательные практики, ведение дневника эмоций и «стоп-триггеры».</p>
+</div>
+<!-- Card 2 -->
+<div class="solution-card">
+<div class="icon-box bg-orange-500 bg-opacity-20 text-orange-400">
+<i class="fas fa-basketball-ball"></i>
+</div>
+<h3 class="text-white font-bold title-font">Спорт и Хобби</h3>
+<p class="text-gray-400 text-xs leading-relaxed">Командные игры, волонтёрство и творчество помогают переключиться и найти друзей.</p>
+</div>
+<!-- Card 3 -->
+<div class="solution-card">
+<div class="icon-box bg-blue-500 bg-opacity-20 text-blue-400">
+<i class="fas fa-info-circle"></i>
+</div>
+<h3 class="text-white font-bold title-font">Информирование</h3>
+<p class="text-gray-400 text-xs leading-relaxed">Разрушение мифов, встречи с экспертами, отказ от романтизации употребления.</p>
+</div>
+<!-- Card 4 -->
+<div class="solution-card">
+<div class="icon-box bg-emerald-500 bg-opacity-20 text-emerald-400">
+<i class="fas fa-hands-helping"></i>
+</div>
+<h3 class="text-white font-bold title-font">Поддержка</h3>
+<p class="text-gray-400 text-xs leading-relaxed">Принцип «равный — равному», наставничество старшеклассников и доверительный диалог.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Storyboard Skit -->
+<div class="w-1/2 h-full pl-6">
+<div class="storyboard-container">
+<div class="film-strip-holes"></div>
+<div class="flex items-center justify-between mb-4 ml-6">
+<h2 class="text-white text-xl font-bold title-font flex items-center gap-2">
+<i class="fas fa-theater-masks text-yellow-400"></i>
+                        Идея сценки
+                    </h2>
+<span class="bg-gray-700 text-gray-300 text-[10px] px-2 py-1 rounded">Сценарий</span>
+</div>
+<!-- Scene 1 -->
+<div class="scene-card border-indigo-500">
+<span class="scene-number">1</span>
+<span class="scene-badge bg-indigo-900 text-indigo-300">Начало</span>
+<h3 class="text-white font-bold text-sm mb-1">Выбор в компании</h3>
+<p class="text-gray-400 text-xs">Диалог друзей, внутренний голос героя, предложение альтернативы (спорт/кино) вместо употребления.</p>
+</div>
+<i class="fas fa-arrow-down arrow-down"></i>
+<!-- Scene 2 -->
+<div class="scene-card border-red-500">
+<span class="scene-number">2</span>
+<span class="scene-badge bg-red-900 text-red-300">Кульминация</span>
+<h3 class="text-white font-bold text-sm mb-1">Последствия</h3>
+<p class="text-gray-400 text-xs">Ускоренная хроника событий: проблемы со здоровьем, ссоры с близкими, потеря целей (без натуралистичных деталей).</p>
+</div>
+<i class="fas fa-arrow-down arrow-down"></i>
+<!-- Scene 3 -->
+<div class="scene-card border-green-500 mb-0">
+<span class="scene-number">3</span>
+<span class="scene-badge bg-green-900 text-green-300">Финал</span>
+<h3 class="text-white font-bold text-sm mb-1">Помощь и восстановление</h3>
+<p class="text-gray-400 text-xs">Обращение к взрослым, поддержка команды.</p>
+<div class="mt-2 pt-2 border-t border-white border-opacity-10 text-center">
+<p class="text-white font-black uppercase text-sm accent-font tracking-wider">«Выбор — это сила»</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

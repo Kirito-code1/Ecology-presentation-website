@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=1280, height=720, initial-scale=1.0" name="viewport"/>
+<title>Проблема 3. Загрязнение улиц города</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;family=Open+Sans:wght@400;600&amp;family=Russo+One&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Open Sans', sans-serif; background-color: #083344; }
+        
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Ambient Background */
+        .bg-ocean {
+            position: absolute;
+            inset: 0;
+            background-color: #083344; /* cyan-950 */
+            z-index: 0;
+        }
+
+        /* Abstract blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .blob-1 { top: -100px; left: -100px; width: 600px; height: 600px; background-color: #10b981; } /* emerald-500 */
+        .blob-2 { bottom: -150px; right: -150px; width: 500px; height: 500px; background-color: #0ea5e9; } /* sky-500 */
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            padding: 3rem 4rem;
+            gap: 4rem;
+        }
+
+        .title-font { font-family: 'Montserrat', sans-serif; }
+        .accent-font { font-family: 'Russo One', sans-serif; }
+
+        /* Issues Card Styling */
+        .issue-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .issue-icon-box {
+            min-width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .video-frame {
+            border-radius: 1rem;
+            overflow: hidden;
+            height: 500px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(16, 185, 129, 0.3); /* Emerald border */
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Floating icons decoration */
+        .floating-icon {
+            position: absolute;
+            color: rgba(255,255,255,0.05);
+            z-index: 2;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Layers -->
+<div class="bg-ocean"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<!-- Floating Decor -->
+<i class="fas fa-trash-can floating-icon text-8xl" style="top: 15%; right: 45%; transform: rotate(-15deg);"></i>
+<i class="fas fa-city floating-icon text-9xl" style="bottom: 5%; left: 5%; transform: rotate(10deg);"></i>
+<!-- Main Layout -->
+<div class="content-layer">
+<!-- Left Column: Problem & Consequences -->
+<div class="flex flex-col w-1/2 justify-between h-full">
+<div>
+<!-- Header -->
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-emerald-500 bg-opacity-20 p-2 rounded-lg">
+<i class="fas fa-city text-emerald-300"></i>
+</div>
+<p class="text-emerald-400 font-bold uppercase tracking-widest text-sm">Проблема №3</p>
+</div>
+<h1 class="text-white text-5xl font-black title-font leading-tight mb-6">
+                    Загрязнение<br/>улиц города
+                </h1>
+<p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                    Мусор на улицах — это не только эстетическая проблема, но и прямая угроза здоровью жителей и городской экосистеме.
+                </p>
+<!-- Key Issues Grid -->
+<div class="flex flex-col gap-4">
+<!-- Issue 1 -->
+<div class="issue-card">
+<div class="issue-icon-box bg-red-900 bg-opacity-50">
+<i class="fas fa-dumpster-fire text-red-300 text-xl"></i>
+</div>
+<div>
+<p class="text-white font-bold title-font">Визуальное загрязнение</p>
+<p class="text-gray-300 text-sm">Переполненные урны, стихийные свалки у дворов, мусор после мероприятий.</p>
+</div>
+</div>
+<!-- Issue 2 -->
+<div class="issue-card">
+<div class="issue-icon-box bg-yellow-900 bg-opacity-50">
+<i class="fas fa-paw text-yellow-300 text-xl"></i>
+</div>
+<div>
+<p class="text-white font-bold title-font">Угроза природе</p>
+<p class="text-gray-300 text-sm">Риск для птиц и животных, загрязнение почвы и ливневых стоков.</p>
+</div>
+</div>
+<!-- Issue 3 -->
+<div class="issue-card">
+<div class="issue-icon-box bg-emerald-900 bg-opacity-50">
+<i class="fas fa-money-bill-wave text-emerald-300 text-xl"></i>
+</div>
+<div>
+<p class="text-white font-bold title-font">Экономический ущерб</p>
+<p class="text-gray-300 text-sm">Дополнительные расходы бюджета на уборку вместо озеленения.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Alert Section (replacing Speakers) -->
+<div class="mt-6 pt-4 border-t border-white border-opacity-10">
+<div class="flex items-center gap-4 bg-red-500 bg-opacity-10 rounded-xl p-4 border border-red-500 border-opacity-20">
+<i class="fas fa-triangle-exclamation text-red-400 text-3xl"></i>
+<div>
+<p class="text-red-200 font-bold uppercase text-xs tracking-wider">Последствие</p>
+<p class="text-white font-semibold">Неприятный запах и снижение качества жизни горожан</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Video Embed -->
+<div class="flex flex-col w-1/2 justify-center h-full relative">
+<!-- Decorative circle behind video -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-emerald-500 bg-opacity-5 rounded-full blur-3xl z-0"></div>
+<div class="video-frame aspect-w-16 aspect-h-9 w-full bg-black shadow-2xl z-10">
+<img src="./image.png" alt="">
+</div>
+<div class="mt-4 flex justify-center">
+<p class="text-emerald-200 text-opacity-60 text-sm italic flex items-center gap-2">
+<i class="fab fa-youtube"></i>
+                    Видео: «Загрязнение городов мусором»
+                </p>
+</div>
+<!-- Solution Teaser -->
+<div class="mt-8 bg-white bg-opacity-5 p-5 rounded-lg border-l-4 border-emerald-500 backdrop-blur-sm">
+<p class="text-white text-lg font-light italic text-center">
+                    «Чисто не там, где убирают, а там, где не мусорят. Но если уже грязно — мы знаем решение.»
+                </p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

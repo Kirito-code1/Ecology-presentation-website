@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Пластик: Решения</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;family=Russo+One&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden; 
+            font-family: 'Open Sans', sans-serif; 
+            background-color: #064e3b; /* emerald-900 base */
+        }
+        
+        .slide-container { 
+            width: 100vw; 
+            height: 100vh; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column;
+            padding: 3rem 4rem;
+        }
+
+        /* Background Elements */
+        .bg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-color: #022c22; /* emerald-950 */
+        }
+        
+        .circle-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .shape-1 { top: -100px; right: -100px; width: 500px; height: 500px; background-color: #10b981; }
+        .shape-2 { bottom: -150px; left: -150px; width: 600px; height: 600px; background-color: #0ea5e9; }
+        .shape-3 { top: 40%; left: 40%; width: 300px; height: 300px; background-color: #34d399; filter: blur(60px); opacity: 0.05; }
+
+        /* Content Layer */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title-font { font-family: 'Montserrat', sans-serif; }
+        .accent-font { font-family: 'Russo One', sans-serif; }
+
+        /* Grid Layout */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1.5rem;
+            height: 100%;
+            margin-top: 1.5rem;
+        }
+
+        /* Card Styling */
+        .solution-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: rgba(52, 211, 153, 0.4);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+        }
+
+        /* Success Metric Card Special Style */
+        .metric-card {
+            background: rgba(6, 78, 59, 0.4);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #34d399;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-family: 'Russo One', sans-serif;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.03);
+            line-height: 1;
+        }
+
+    </style>
+<link href="slides-responsive.css" rel="stylesheet"/>
+</head>
+<body class="slide-page">
+<div class="slide-container">
+<!-- Background -->
+<div class="bg-layer"></div>
+<div class="circle-shape shape-1"></div>
+<div class="circle-shape shape-2"></div>
+<div class="circle-shape shape-3"></div>
+<div class="content-wrapper">
+<!-- Header -->
+<div class="flex items-end justify-between mb-2">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<div class="w-12 h-1 bg-green-400 rounded-full"></div>
+<p class="text-green-400 font-bold uppercase tracking-widest text-sm">Действуй сегодня</p>
+</div>
+<h1 class="text-white text-4xl font-extrabold title-font">Пластик: наши решения</h1>
+</div>
+<div class="bg-white bg-opacity-5 px-4 py-2 rounded-lg border border-white border-opacity-10">
+<p class="text-gray-300 text-sm italic">
+<i class="fas fa-bullseye text-green-400 mr-2"></i>
+                        Цель: сократить отходы школы на 30%
+                    </p>
+</div>
+</div>
+<!-- Grid -->
+<div class="solutions-grid">
+<!-- Card 1 -->
+<div class="solution-card group">
+<span class="step-number">01</span>
+<div class="icon-wrapper bg-green-500 bg-opacity-20 text-green-400 group-hover:bg-green-400 group-hover:text-green-900 transition-colors">
+<i class="fas fa-bag-shopping"></i>
+</div>
+<h3 class="text-xl text-white font-bold mb-2 title-font">Отказ от одноразового</h3>
+<p class="text-gray-300 text-sm leading-relaxed">
+                        Экосумки вместо пакетов, многоразовые бутылки для воды и термокружки. Свой контейнер для еды.
+                    </p>
+</div>
+<!-- Card 2 -->
+<div class="solution-card group">
+<span class="step-number">02</span>
+<div class="icon-wrapper bg-blue-500 bg-opacity-20 text-blue-400 group-hover:bg-blue-400 group-hover:text-blue-900 transition-colors">
+<i class="fas fa-recycle"></i>
+</div>
+<h3 class="text-xl text-white font-bold mb-2 title-font">Сортировка</h3>
+<p class="text-gray-300 text-sm leading-relaxed">
+                        Пластик с маркировкой 1 (PET), 2 (HDPE), 5 (PP) — в переработку. Моем и сминаем перед сдачей.
+                    </p>
+</div>
+<!-- Card 3 -->
+<div class="solution-card group">
+<span class="step-number">03</span>
+<div class="icon-wrapper bg-yellow-500 bg-opacity-20 text-yellow-400 group-hover:bg-yellow-400 group-hover:text-yellow-900 transition-colors">
+<i class="fas fa-scale-balanced"></i>
+</div>
+<h3 class="text-xl text-white font-bold mb-2 title-font">Покупки без упаковки</h3>
+<p class="text-gray-300 text-sm leading-relaxed">
+                        Выбираем товары на развес. Предпочитаем стекло, бумагу или переработанные материалы.
+                    </p>
+</div>
+<!-- Card 4 -->
+<div class="solution-card group">
+<span class="step-number">04</span>
+<div class="icon-wrapper bg-indigo-500 bg-opacity-20 text-indigo-400 group-hover:bg-indigo-400 group-hover:text-indigo-900 transition-colors">
+<i class="fas fa-school"></i>
+</div>
+<h3 class="text-xl text-white font-bold mb-2 title-font">Школьные инициативы</h3>
+<p class="text-gray-300 text-sm leading-relaxed">
+                        «Неделя без пластика», установка эко-боксов для сбора крышечек, плакаты в столовой «Возьми свою кружку».
+                    </p>
+</div>
+<!-- Card 5 -->
+<div class="solution-card group">
+<span class="step-number">05</span>
+<div class="icon-wrapper bg-purple-500 bg-opacity-20 text-purple-400 group-hover:bg-purple-400 group-hover:text-purple-900 transition-colors">
+<i class="fas fa-mobile-screen"></i>
+</div>
+<h3 class="text-xl text-white font-bold mb-2 title-font">Цифровая замена</h3>
+<p class="text-gray-300 text-sm leading-relaxed">
+                        Меньше пластиковых папок и обложек. Используем электронные носители и облачные хранилища.
+                    </p>
+</div>
+<!-- Card 6: Metric -->
+<div class="solution-card metric-card">
+<div class="icon-wrapper bg-white bg-opacity-10 text-white">
+<i class="fas fa-chart-line"></i>
+</div>
+<h3 class="text-xl text-white font-bold mb-3 title-font border-b border-white border-opacity-20 pb-2">Измерим успех</h3>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<i class="fas fa-check text-green-400 text-xs"></i>
+<p class="text-gray-200 text-sm font-semibold">Кг собранного вторсырья</p>
+</div>
+<div class="flex items-center gap-2">
+<i class="fas fa-check text-green-400 text-xs"></i>
+<p class="text-gray-200 text-sm font-semibold">Снижение закупок посуды</p>
+</div>
+<div class="flex items-center gap-2">
+<i class="fas fa-check text-green-400 text-xs"></i>
+<p class="text-gray-200 text-sm font-semibold">Число участников акций</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

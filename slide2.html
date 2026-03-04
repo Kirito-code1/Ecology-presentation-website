@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Вступление</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;family=Russo+One&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Open Sans', sans-serif; background-color: #064e3b; }
+        
+        .slide-container { 
+            width: 100vw;
+            height: 100vh;
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        /* Background */
+        .bg-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .bg-image { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) grayscale(20%); }
+        .overlay-gradient { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(6, 78, 59, 0.9); 
+            z-index: 1; 
+        }
+        
+        /* Abstract Shapes */
+        .shape { position: absolute; z-index: 2; opacity: 0.1; }
+        .shape-blob { 
+            background-color: #34d399; 
+            border-radius: 50%; 
+            filter: blur(60px); 
+        }
+
+        /* Content */
+        .content-wrapper { 
+            position: relative; 
+            z-index: 10; 
+            padding: 2.5rem 4rem; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .title-font { font-family: 'Montserrat', sans-serif; }
+        .accent-font { font-family: 'Russo One', sans-serif; }
+
+        .host-avatar {
+            width: 56px;
+            height: 56px;
+            background-color: rgba(16, 185, 129, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(16, 185, 129, 0.5);
+            color: #6ee7b7;
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+        }
+    </style>
+<link href="slides-responsive.css" rel="stylesheet"/>
+</head>
+<body class="slide-page">
+<div class="slide-container">
+<!-- Background Layer -->
+<div class="bg-layer">
+<img alt="Background Texture" class="bg-image" src="https://page.gensparksite.com/slides_images/afe94bcd4ae5261401cf206cb242f169.webp"/>
+<div class="overlay-gradient"></div>
+</div>
+<!-- Decor Shapes -->
+<div class="shape shape-blob" style="width: 500px; height: 500px; top: -100px; right: -150px;"></div>
+<div class="shape shape-blob" style="width: 400px; height: 400px; bottom: -50px; left: -100px; background-color: #0ea5e9;"></div>
+<div class="content-wrapper">
+<!-- Header -->
+<div class="flex items-center mb-6">
+<div class="w-1.5 h-12 bg-green-400 mr-4 rounded-full"></div>
+<div>
+<p class="text-green-300 font-bold uppercase tracking-widest text-xs mb-1">Важность темы</p>
+<h1 class="text-white text-4xl font-extrabold title-font">Почему экология — приоритет №1?</h1>
+</div>
+</div>
+<div class="flex flex-1 gap-10">
+<!-- Left Column: Narrative & Hosts -->
+<div class="flex flex-col w-5/12 justify-between">
+<div class="space-y-6">
+<div class="bg-white bg-opacity-5 p-5 rounded-2xl border-l-4 border-yellow-400">
+<p class="text-lg text-white font-medium leading-relaxed">
+<i class="fas fa-quote-left text-yellow-400 mr-2 opacity-50"></i>
+                                Мы живём в эпоху глобальных перемен. <span class="text-green-300 font-bold">Климат, биоразнообразие, отходы</span> — это вызовы, которые касаются каждого из нас.
+                            </p>
+</div>
+<p class="text-gray-200 leading-relaxed font-light">
+                            Это влияет на здоровье, экономику и справедливость. Игнорировать это больше невозможно — будущее формируется сегодня.
+                        </p>
+</div>
+<!-- Hosts Section -->
+<div class="glass-card p-5 mt-auto">
+<div class="flex items-center justify-between mb-4">
+<p class="text-green-400 text-xs font-bold uppercase tracking-wider">Ведущие мероприятия</p>
+<i class="fas fa-microphone-alt text-white opacity-20"></i>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-4">
+<div class="host-avatar"><i class="fas fa-user"></i></div>
+<div>
+<p class="text-white font-bold title-font">Абдухоликова Робия</p>
+<p class="text-gray-400 text-xs">11 «А» класс</p>
+</div>
+</div>
+<div class="h-px w-full bg-white bg-opacity-10"></div>
+<div class="flex items-center gap-4">
+<div class="host-avatar"><i class="fas fa-user"></i></div>
+<div>
+<p class="text-white font-bold title-font">Чалашева Эвилина</p>
+<p class="text-gray-400 text-xs">11 «А» класс</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Key Points & Interactive -->
+<div class="flex flex-col w-7/12 gap-5">
+<!-- 3 Cards -->
+<div class="grid grid-cols-1 gap-4">
+<div class="glass-card p-4 flex items-center gap-5">
+<div class="icon-box bg-red-500 bg-opacity-20 text-red-300">
+<i class="fas fa-clock text-2xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg mb-0.5 accent-font">Время</h3>
+<p class="text-gray-300 text-sm">Окно возможностей закрывается. Действовать нужно сейчас.</p>
+</div>
+</div>
+<div class="glass-card p-4 flex items-center gap-5">
+<div class="icon-box bg-blue-500 bg-opacity-20 text-blue-300">
+<i class="fas fa-map-marked-alt text-2xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg mb-0.5 accent-font">Место</h3>
+<p class="text-gray-300 text-sm">Решения начинаются здесь: в школе, во дворе, в городе.</p>
+</div>
+</div>
+<div class="glass-card p-4 flex items-center gap-5">
+<div class="icon-box bg-purple-500 bg-opacity-20 text-purple-300">
+<i class="fas fa-bolt text-2xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg mb-0.5 accent-font">Мы</h3>
+<p class="text-gray-300 text-sm">У нас есть энергия, голос и идеи для реальных перемен.</p>
+</div>
+</div>
+</div>
+<!-- Call to Action / Interactive -->
+<div class="mt-auto relative overflow-hidden rounded-2xl border border-green-500 border-opacity-30 bg-gradient-to-r from-green-900 to-emerald-900 p-1">
+<div class="absolute top-0 right-0 w-32 h-32 bg-green-500 opacity-10 rounded-full blur-2xl transform translate-x-10 -translate-y-10"></div>
+<div class="flex items-center justify-between p-5 h-full">
+<div class="flex-1 pr-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-yellow-400 text-black text-xs font-bold px-2 py-0.5 rounded uppercase">Интерактив</span>
+</div>
+<h3 class="text-white font-bold text-xl mb-2 title-font">Твой первый шаг</h3>
+<p class="text-gray-300 text-sm mb-0">Отсканируй код и выбери:<br/> <b class="text-white">«3 действия, которые я готов начать сегодня»</b></p>
+</div>
+<div class="bg-white p-2 rounded-lg shadow-lg flex-shrink-0">
+<img alt="QR Code" class="w-24 h-24 block" src="https://page.gensparksite.com/slides_images/d68462066dbb914323d6e9cc4753bfaa.png"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
